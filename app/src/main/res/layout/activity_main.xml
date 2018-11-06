@@ -19,63 +19,63 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/button9"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:onClick="tileClicked"
-            android:text="Button" />
+            android:text="@string/empty" />
 
     </GridLayout>
 
@@ -85,6 +85,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="resetClicked"
-        android:text="Button" />
+        android:text="@string/RESET" />
 
 </LinearLayout>

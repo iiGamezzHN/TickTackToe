@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tick_Tack_Toe</string>
+    <string name="button">Button</string>
+    <string name="button">Button</string>
+    <string name="empty" />
+    <string name="RESET">reset</string>
 </resources>

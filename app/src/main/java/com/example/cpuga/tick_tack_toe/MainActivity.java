@@ -13,8 +13,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tileClicked(View view) {
+
     }
 
     public void resetClicked(View view) {
+
     }
 }
