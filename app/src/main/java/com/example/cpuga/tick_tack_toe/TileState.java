@@ -1,6 +1,6 @@
 package com.example.cpuga.tick_tack_toe;
 
-public enum Tilestate {
+public enum TileState {
     BLANK,
     CROSS,
     CIRCLE,
