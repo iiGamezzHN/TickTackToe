@@ -10,7 +10,7 @@ public class Game {
     private TileState[][] board;
 
     private Boolean playerOneTurn;  // true if player 1's turn, false if player 2's turn
-    private int movesPlayed;
+    private int movesPlayed = 0;
     private Boolean gameOver;
 
     public Game() {
@@ -25,6 +25,9 @@ public class Game {
     }
 
     public TileState choose(int row, int column) {
+        movesPlayed += 1;
+        Log.d("Count",Integer.toString(movesPlayed));
+
         if (board[row][column] == TileState.BLANK) {
             if (playerOneTurn) {
                 board[row][column] = TileState.CROSS;
@@ -45,6 +48,10 @@ public class Game {
     }
 
     public GameState won() {
+        if (movesPlayed == 26) {
+            Log.d("Message","Draw!");
+        }
+
         for(int i=0; i<BOARD_SIZE; i++)
             if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == TileState.CROSS) { //Diagonal LR
                 Log.d("Message","P1 Won!");

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     Game game;
 
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         game = new Game();
     }
+
+
 
     public void tileClicked(View view) {
         if (game.won() != GameState.IN_PROGRESS) {
