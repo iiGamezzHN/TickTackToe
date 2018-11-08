@@ -1,6 +1,9 @@
 package com.example.cpuga.tick_tack_toe;
 
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Game {
     final private int BOARD_SIZE = 3;
@@ -43,7 +46,7 @@ public class Game {
 
     public GameState won() {
         for(int i=0; i<BOARD_SIZE; i++)
-            if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == TileState.CROSS) {
+            if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == TileState.CROSS) { //Diagonal LR
                 Log.d("Message","P1 Won!");
             }
             else if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == TileState.CIRCLE) {
