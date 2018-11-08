@@ -3,9 +3,14 @@ package com.example.cpuga.tick_tack_toe;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.Toast;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
     final private int BOARD_SIZE = 3;
     private TileState[][] board;
 
@@ -24,9 +29,37 @@ public class Game {
 
     }
 
+    public void Restore(GridLayout gridLayout) {
+
+        int but = 0;
+        for(int i=0; i<BOARD_SIZE; i++)
+            for(int j=0; j<BOARD_SIZE; j++) {
+                TileState state = board[i][j];
+                View child = gridLayout.getChildAt(but);
+                Button button = (Button) child;
+                //String buttonNr = "button" + Integer.toString(but);
+                switch(state) {
+                    case CROSS:
+                        // do something
+                        button.setText("X");
+                        but += 1;
+                        break;
+                    case CIRCLE:
+                        // do something
+                        button.setText("O");
+                        but += 1;
+                        break;
+                    case BLANK:
+                        // do something different
+                        but += 1;
+                        break;
+                }
+            }
+    }
+
     public TileState choose(int row, int column) {
         movesPlayed += 1;
-        Log.d("Count",Integer.toString(movesPlayed));
+        //Log.d("Count",Integer.toString(movesPlayed));
 
         if (board[row][column] == TileState.BLANK) {
             if (playerOneTurn) {

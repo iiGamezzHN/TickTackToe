@@ -18,10 +18,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        game = new Game();
+        GridLayout gridlayout = findViewById(R.id.grid_Layout);
+
+        if (savedInstanceState != null) {
+            game = (Game) savedInstanceState.getSerializable("gameTag");
+            game.Restore(gridlayout);
+        } else game = new Game();
     }
 
-
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putSerializable("gameTag", game);
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
     public void tileClicked(View view) {
         if (game.won() != GameState.IN_PROGRESS) {
@@ -108,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
 
     public void resetClicked(View view) {
         game = new Game();
