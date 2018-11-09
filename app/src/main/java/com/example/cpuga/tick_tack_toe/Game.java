@@ -83,25 +83,31 @@ public class Game implements Serializable {
     public GameState won() {
         if (movesPlayed == 26) {
             Log.d("Message","Draw!");
+            //MainActivity.endMessage("hoi");
         }
 
         for(int i=0; i<BOARD_SIZE; i++)
             if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == TileState.CROSS) { //Diagonal LR
                 Log.d("Message","P1 Won!");
+                return GameState.PLAYER_ONE;
             }
             else if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == TileState.CIRCLE) {
                 Log.d("Message","P2 Won!");
+                return GameState.PLAYER_TWO;
             }
             else if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] == TileState.CROSS) {
                 Log.d("Message","P1 Won!");
+                return GameState.PLAYER_ONE;
             }
             else if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] == TileState.CIRCLE) {
                 Log.d("Message","P2 Won!");
+                return GameState.PLAYER_TWO;
             }
 
         if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != TileState.BLANK) {
             if (board[0][0] == TileState.CROSS) {
                 Log.d("Message","P1 Won!");
+                //Toast.makeText(getApplicationContext(),"This is my toast message",Toast.LENGTH_LONG).show
                 return GameState.PLAYER_ONE;
             }
 

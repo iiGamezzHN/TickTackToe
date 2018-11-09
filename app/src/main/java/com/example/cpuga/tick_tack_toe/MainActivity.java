@@ -1,5 +1,6 @@
 package com.example.cpuga.tick_tack_toe;
 
+import android.app.Application;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             game = (Game) savedInstanceState.getSerializable("gameTag");
+            assert game != null; // No bugging notification about possible NullPointerException
             game.Restore(gridlayout);
         } else game = new Game();
     }
@@ -33,11 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void tileClicked(View view) {
         if (game.won() != GameState.IN_PROGRESS) {
-            if (game.won() == GameState.PLAYER_ONE) { // DOESN'T WORK
-                Log.d(" ", "Player1");
+            if (game.won() == GameState.PLAYER_ONE) {
                 return;
             } else {
-                Log.d(" ", "Player2");
                 return;
             }
         }
