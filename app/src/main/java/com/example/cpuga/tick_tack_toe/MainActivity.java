@@ -1,5 +1,6 @@
 package com.example.cpuga.tick_tack_toe;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Game game;
+    public static int movesPlayed;
+    TextView winningPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +26,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GridLayout gridlayout = findViewById(R.id.grid_Layout);
+        winningPlayer = findViewById(R.id.winning_player);
 
         if (savedInstanceState != null) {
             game = (Game) savedInstanceState.getSerializable("gameTag");
             assert game != null; // No bugging notification about possible NullPointerException
             game.Restore(gridlayout);
+            String win = savedInstanceState.getString("winTag");
+            winningPlayer.setText(win);
         } else game = new Game();
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putSerializable("gameTag", game);
+        savedInstanceState.putString("winTag", winningPlayer.getText().toString());
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    @SuppressLint("SetTextI18n")
     public void tileClicked(View view) {
         if (game.won() != GameState.IN_PROGRESS) {
             if (game.won() == GameState.PLAYER_ONE) {
@@ -116,9 +126,19 @@ public class MainActivity extends AppCompatActivity {
                 game.won();
                 break;
         }
+        if (game.GameOver()) {
+            if (movesPlayed == 26) {
+                Toast.makeText(this, "It's a draw!", Toast.LENGTH_SHORT).show();
+                winningPlayer.setText("It's a draw!");
+            }else if (state == TileState.CROSS) {
+                Toast.makeText(this, "Player 1 won!", Toast.LENGTH_SHORT).show();
+                winningPlayer.setText("Player 1 won!");
+            }else if (state == TileState.CIRCLE) {
+                Toast.makeText(this, "Player 2 won!", Toast.LENGTH_SHORT).show();
+                winningPlayer.setText("Player 2 won!");
+            }
+        }
     }
-
-
 
     public void resetClicked(View view) {
         game = new Game();
@@ -129,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
             Button button = (Button) child;
             button.setText(" ");
         }
+
+        winningPlayer.setText("");
+        movesPlayed = 0;
     }
 
 
