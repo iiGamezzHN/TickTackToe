@@ -15,7 +15,7 @@ public class Game implements Serializable {
     private Boolean gameOver;
     private GameState draw;
 
-    public Game() {
+    public Game() { // Creates the board
         board = new TileState[BOARD_SIZE][BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE; i++)
             for (int j = 0; j < BOARD_SIZE; j++)
@@ -26,7 +26,7 @@ public class Game implements Serializable {
 
     }
 
-    public void Restore(GridLayout gridLayout) {
+    public void Restore(GridLayout gridLayout) { // Method for restoring the game
 
         int but = 0;
         for (int i = 0; i < BOARD_SIZE; i++)
@@ -54,7 +54,7 @@ public class Game implements Serializable {
             }
     }
 
-    public TileState choose(int row, int column) {
+    public TileState choose(int row, int column) { // Check the state of the clicked button
         movesPlayed += 1;
         //Log.d("Count",Integer.toString(movesPlayed));
 
@@ -75,7 +75,7 @@ public class Game implements Serializable {
         }
     }
 
-    public GameState won() {
+    public GameState won() { // Winning conditions
         if (movesPlayed == 26) {
             MainActivity.movesPlayed = 26;
             gameOver = true;
@@ -112,10 +112,12 @@ public class Game implements Serializable {
         } else if (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] !=
                 TileState.BLANK) { // Diagonal Right-Left P1
             if (board[0][2] == TileState.CROSS) {
-                gameOver = true;;
+                gameOver = true;
+                ;
                 return GameState.PLAYER_ONE;
             } else {
-                gameOver = true;; // Diagonal Right-Left P1
+                gameOver = true;
+                ; // Diagonal Right-Left P1
                 return GameState.PLAYER_TWO;
             }
         } else {

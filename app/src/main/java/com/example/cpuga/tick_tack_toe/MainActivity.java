@@ -16,13 +16,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    // Initialize variables
     private Game game;
     public static int movesPlayed;
     private TextView winningPlayer;
-    private String vs;
-    private Button friend;
-    private Button computer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +27,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GridLayout gridlayout = findViewById(R.id.grid_Layout);
-        winningPlayer = findViewById(R.id.winning_player);
-
-        vs = "Friend";
-        friend = findViewById(R.id.vs_friend);
-        computer = findViewById(R.id.vs_computer);
-
-        friend.setBackgroundResource(R.color.selected);
+        winningPlayer = findViewById(R.id.winning_player); // Will show who wins, or draw
 
         if (savedInstanceState != null) {
             game = (Game) savedInstanceState.getSerializable("gameTag");
             assert game != null; // No bugging notification about possible NullPointerException
-            game.Restore(gridlayout);
+            game.Restore(gridlayout); // Restore the game when tilting the device
             String win = savedInstanceState.getString("winTag");
             winningPlayer.setText(win);
         } else game = new Game();
@@ -54,26 +45,14 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString("winTag", winningPlayer.getText().toString());
     }
 
-    public void vsFriend(View view) {
-        if(vs != "Friend") {
-            // Do something
-            vs = "Friend";
-            resetClicked(view);
-            computer.setBackgroundResource(android.R.drawable.btn_default);
-            friend.setBackgroundResource(R.color.selected);
-        }
-    }
-
-    public void vsComputer(View view) {
-        if(vs != "Computer") {
-            // Do something
-            vs = "Computer";
-            resetClicked(view);
-            friend.setBackgroundResource(android.R.drawable.btn_default);
-            computer.setBackgroundResource(R.color.selected);
-        }
-    }
-
+    /**
+     * This method checks which button is pressed
+     * then checks what the state of that button is
+     * if it already has a cross or circle it won't do anything
+     * if it's empty it put a cross for player 1 and a circle for player 2
+     *
+     * @param view
+     */
     @SuppressLint("SetTextI18n")
     public void tileClicked(View view) {
         if (game.won() != GameState.IN_PROGRESS) {
@@ -91,57 +70,39 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.button) {
             row = 0;
             column = 0;
-        }
-
-        else if (id == R.id.button2) {
+        } else if (id == R.id.button2) {
             row = 0;
             column = 1;
-        }
-
-        else if (id == R.id.button3) {
+        } else if (id == R.id.button3) {
             row = 0;
             column = 2;
-        }
-
-        else if (id == R.id.button4) {
+        } else if (id == R.id.button4) {
             row = 1;
             column = 0;
-        }
-
-        else if (id == R.id.button5) {
+        } else if (id == R.id.button5) {
             row = 1;
             column = 1;
-        }
-
-        else if (id == R.id.button6) {
+        } else if (id == R.id.button6) {
             row = 1;
             column = 2;
-        }
-
-        else if (id == R.id.button7) {
+        } else if (id == R.id.button7) {
             row = 2;
             column = 0;
-        }
-
-        else if (id == R.id.button8) {
+        } else if (id == R.id.button8) {
             row = 2;
             column = 1;
-        }
-
-        else if (id == R.id.button9) {
+        } else if (id == R.id.button9) {
             row = 2;
             column = 2;
-        }
-
-        else if (id == R.id.button10) {
+        } else if (id == R.id.button10) {
             resetClicked(view);
         }
 
-        TileState state = game.choose(row,column);
+        TileState state = game.choose(row, column);
 
         Button button = (Button) view;
 
-        switch(state) {
+        switch (state) { // Check state of the button
             case CROSS:
                 // do something
                 button.setText("X");
@@ -157,21 +118,21 @@ public class MainActivity extends AppCompatActivity {
                 game.won();
                 break;
         }
-        if (game.GameOver()) {
+        if (game.GameOver()) { // Win function for setting TextView to who wins
             if (movesPlayed == 26) {
                 Toast.makeText(this, "It's a draw!", Toast.LENGTH_SHORT).show();
                 winningPlayer.setText("It's a draw!");
-            }else if (state == TileState.CROSS) {
+            } else if (state == TileState.CROSS) {
                 Toast.makeText(this, "Player 1 won!", Toast.LENGTH_SHORT).show();
                 winningPlayer.setText("Player 1 won!");
-            }else if (state == TileState.CIRCLE) {
+            } else if (state == TileState.CIRCLE) {
                 Toast.makeText(this, "Player 2 won!", Toast.LENGTH_SHORT).show();
                 winningPlayer.setText("Player 2 won!");
             }
         }
     }
 
-    public void resetClicked(View view) {
+    public void resetClicked(View view) { // Resets the game
         game = new Game();
 
         GridLayout gridlayout = findViewById(R.id.grid_Layout);
