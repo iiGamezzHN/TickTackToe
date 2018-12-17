@@ -3,6 +3,7 @@ package com.example.cpuga.tick_tack_toe;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +16,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    Game game;
+    private Game game;
     public static int movesPlayed;
-    TextView winningPlayer;
+    private TextView winningPlayer;
+    private String vs;
+    private Button friend;
+    private Button computer;
 
 
     @Override
@@ -27,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
         GridLayout gridlayout = findViewById(R.id.grid_Layout);
         winningPlayer = findViewById(R.id.winning_player);
+
+        vs = "Friend";
+        friend = findViewById(R.id.vs_friend);
+        computer = findViewById(R.id.vs_computer);
+
+        friend.setBackgroundResource(R.color.selected);
 
         if (savedInstanceState != null) {
             game = (Game) savedInstanceState.getSerializable("gameTag");
@@ -38,9 +48,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
         savedInstanceState.putSerializable("gameTag", game);
         savedInstanceState.putString("winTag", winningPlayer.getText().toString());
-        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void vsFriend(View view) {
+        if(vs != "Friend") {
+            // Do something
+            vs = "Friend";
+            resetClicked(view);
+            computer.setBackgroundResource(android.R.drawable.btn_default);
+            friend.setBackgroundResource(R.color.selected);
+        }
+    }
+
+    public void vsComputer(View view) {
+        if(vs != "Computer") {
+            // Do something
+            vs = "Computer";
+            resetClicked(view);
+            friend.setBackgroundResource(android.R.drawable.btn_default);
+            computer.setBackgroundResource(R.color.selected);
+        }
     }
 
     @SuppressLint("SetTextI18n")

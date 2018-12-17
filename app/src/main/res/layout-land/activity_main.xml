@@ -92,17 +92,36 @@
 
     </GridLayout>
 
-    <TextView
-        android:id="@+id/winning_player"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text=""
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/vs_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bt_friend" />
+
+        <TextView
+            android:id="@+id/winning_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/vs_computer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bt_computer" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button10"

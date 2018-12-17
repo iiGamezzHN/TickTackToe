@@ -3,4 +3,6 @@
     <string name="button">Button</string>
     <string name="empty" />
     <string name="RESET">reset</string>
+    <string name="bt_friend">friend</string>
+    <string name="bt_computer">computer</string>
 </resources>
